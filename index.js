@@ -17,31 +17,27 @@ $(document).ready(() => {
     });
 
     kod.change(function () {
-        if (kod.val() !== '') {
-            kod.removeClass('redBorder');
-        } else {
-            kod.addClass('redBorder');
-        }
+        border(kod);
         submitFunction();
     });
 
     naziv.change(function () {
-        if (naziv.val() !== '') {
-            naziv.removeClass('redBorder');
-        } else {
-            naziv.addClass('redBorder');
-        }
+        border(naziv);
         submitFunction();
     });
 
     vrsta.change(function(){
-        if (vrsta.val() !== '') {
-            vrsta.removeClass('redBorder');
-        } else {
-            vrsta.addClass('redBorder');
-        }
+        border(vrsta);
         submitFunction();
     });
+
+    function border(a){
+        if (a.val() !== '') {
+            a.removeClass('redBorder');
+        } else {
+            a.addClass('redBorder');
+        }
+    }
 
     cena1.keyup(function (e) {
         if (/\D/g.test(this.value)) {
@@ -103,8 +99,9 @@ $(document).ready(() => {
         let listItem = $('result tbody').children('tr');
         let searchSplit = searchTerm.replace(/ /g,"'):containsi('");
         $.extend($.expr[':'], {
-            'containsi': function(elem, i, match, array){
-                return (elem.textContent || elem.innerText || '').toLoverCase().indexOf((match[2] || "").toLowerCase()) >=0;
+            'containsi': function(elem,i,match,array){
+                return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "")
+                .toLowerCase()) >=0;
             }
         });
         $(".results tbody tr").not(":containsi('"+ searchSplit +"')").each(function(){
