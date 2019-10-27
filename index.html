@@ -10,19 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
-
-
-
     <title>Rad sa artiklima</title>
 </head>
-
 <body>
     <h1>Rad sa artiklima</h1>
-
     <div class="container">
         <h2>Unos artikla:</h2>
         <form id="forma" class="form-horizontal">
-
             <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Kategorija artikla:</label>
                 <div class="col-sm-10">
@@ -35,70 +29,70 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2 " for="barkod">Barkod:</label>
+                <label class="control-label col-sm-2 " for="code">Barkod:</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control redBorder" id="barkod" placeholder="Unesite barkod" name="barkod">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="nazivArtikla">Naziv artikla:</label>
-                <div class="col-sm-10">
-                    <input required type="text" class="form-control redBorder" id="nazivArtikla" placeholder="Unesite naziv artikla"
-                        name="nazivArtikla">
-                </div>
-            </div>
-            <!--Textarea potrebno podesavanje sirine -->
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="opisArtikla">Opis artikla:</label>
-                <div class="col-sm-10">
-                    <textarea maxlength="200" class="form-control " style="" rows="3" id="opisArtikla"
-                    name="opisArtikla"></textarea>
+                    <input required type="text" class="form-control redBorder" id="code" placeholder="Unesite barkod" name="code">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="vrstaArtikla">Vrsta artikla:</label>
+                <label class="control-label col-sm-2" for="nameArtical">Naziv artikla:</label>
                 <div class="col-sm-10">
-                    <input required type="text" class="form-control redBorder" id="vrstaArtikla" placeholder="Unesite vrstu artikla"
-                        name="vrstaArtikla">
+                    <input required type="text" class="form-control redBorder" id="nameArtical" placeholder="Unesite naziv artikla"
+                        name="nameArtical">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="osnovnaCena">Osnovna cena:</label>
+                <label class="control-label col-sm-2" for="description">Opis artikla:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="osnovnaCena" placeholder="Unesite osnovnu cenu"
-                        name="osnovnaCena">
+                    <textarea maxlength="200" class="form-control " style="" rows="3" id="description"
+                    name="description"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="cenaPdv">Cena sa PDV-om:</label>
+                <label class="control-label col-sm-2" for="type">Vrsta artikla:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="cenaPdv" name="cenaPdv" readonly>
+                    <input required type="text" class="form-control redBorder" id="type" placeholder="Unesite vrstu artikla"
+                        name="type">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="prize">Osnovna cena:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="prize" placeholder="Unesite osnovnu cenu"
+                        name="prize">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="prizePdv">Cena sa PDV-om:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="prizePdv" name="prizePdv" readonly>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button disabled type="submit" id="dugme" class="btn btn-primary" name="submit">Sačuvaj artikal</button>
+                    <button disabled type="submit" id="btnSubmit" class="btn btn-primary" name="btnSubmit">Sačuvaj artikal</button>
                 </div>
             </div>
         </form>
     </div>
 
+    <!--Search-->
     <div class="container">
-
-        <!--Search polje-->
         <div class="form-group pull-right">
             <input type="text" class="search form-control" placeholder="Search here...">
         </div>
         <span class="counter pull-right"></span>
     </div>
 
-    <!--Tabela-->
+    <!--Table-->
     <div class="container mt-5 col-12">
-        <table id="table" class="table table-sm table-bordered text-right results">
+        <table id="table" class="table table-sm table-bordered text-left results">
             <thead>
                 <tr>
                     <th id="kategorija" scope="col">Kategorija</th>
@@ -110,17 +104,11 @@
                     <th id="cena2" scope="col">Cena sa PDV-om</th>
                     <th id="vreme" scope="col">Vreme unosa cene</th>
                 </tr>
-                <tr class="no-result warning">
-                    <td colspan="8" style="color:red; text-align:center;">Nema rezultata</td>
-                </tr>
             </thead>
             <tbody>
-
             </tbody>
         </table>
     </div>
-
 </body>
-
 
 </html>

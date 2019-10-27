@@ -1,33 +1,31 @@
 $(document).ready(() => {
-    const kategorija = $('#select');
-    const kod = $('#barkod');
-    const naziv = $('#nazivArtikla');
-    const opis = $('#opisArtikla');
-    const vrsta = $('#vrstaArtikla');
-    const cena1 = $('#osnovnaCena');
-    const cena2 = $('#cenaPdv');
-    const dugme = $('#dugme');
+    const category = $('#select');
+    const code = $('#code');
+    const nameArtical = $('#nameArtical');
+    const description = $('#description');
+    const type = $('#type');
+    const prize = $('#prize');
+    const prizePdv = $('#prizePdv');
+    const btnSubmit = $('#btnSubmit');
 
-
-
-    kod.keyup(function (e) {
+    code.keyup(function (e) {
         if (/\D/g.test(this.value)) {
             this.value = this.value.replace(/\D/g, '');
         }
     });
 
-    kod.change(function () {
-        border(kod);
+    code.change(function () {
+        border(code);
         submitFunction();
     });
 
-    naziv.change(function () {
-        border(naziv);
+    nameArtical.change(function () {
+        border(nameArtical);
         submitFunction();
     });
 
-    vrsta.change(function(){
-        border(vrsta);
+    type.change(function(){
+        border(type);
         submitFunction();
     });
 
@@ -39,7 +37,7 @@ $(document).ready(() => {
         }
     }
 
-    cena1.keyup(function (e) {
+    prize.keyup(function (e) {
         if (/\D/g.test(this.value)) {
             this.value = this.value.replace(/\D/g, '');
         }
@@ -48,60 +46,53 @@ $(document).ready(() => {
     
     let d;
     let vreme;
-
-    cena1.change(function () {
-        cena2.val(cena1.val() * 1.2);
+    prize.change(function () {
+        prizePdv.val(prize.val() * 1.2);
          d = new Date($.now());
-         vreme = d.getDate()+"-"+(d.getMonth() + 1)+"-"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-
+         vreme = d.getDate()+"-"+(d.getMonth() + 1)+"-"+d.getFullYear()+" "+d.getHours()
+                +":"+d.getMinutes()+":"+d.getSeconds();
     });
 
- 
-
-
     function submitFunction() {
-        if (kod.val() == '' || naziv.val() == '' || vrsta.val() == '') {
-            dugme.attr("disabled", true);
+        if (code.val() == '' || nameArtical.val() == '' || type.val() == '') {
+            btnSubmit.attr("disabled", true);
         } else {
-            dugme.removeAttr("disabled");
+            btnSubmit.removeAttr("disabled");
         }
     }
 
-    
-    dugme.click(function (e) {
+    btnSubmit.click(function (e) {
         e.preventDefault(e);
         $('table').css('visibility', 'visible');
-        const red = '<tr><td>'+ kategorija.val() +'</td><td>'+ kod.val() +'</td><td>'
-                    + naziv.val() + '</td><td id="limit" title="'+opis.val()+'">'+ opis.val() +'</td><td>'+ vrsta.val()
-                     +'</td><td>'+ cena1.val() +'</td><td>'+cena2.val() +'</td><td>'+ vreme +'</td></tr>';
+        $('.search').css('visibility', 'visible');
+        const red = '<tr><td>'+ category.val() +'</td><td>'+ code.val() +'</td><td id="name">'
+                    + nameArtical.val() + '</td><td id="limit" title="'+description.val()+'">'+ description.val() +'</td><td>'+ type.val()
+                     +'</td><td>'+ prize.val() +'</td><td>'+prizePdv.val() +'</td><td>'+ vreme +'</td></tr>';
         $('tbody').append(red);
-        kod.addClass('redBorder');
-        naziv.addClass('redBorder');
-        vrsta.addClass('redBorder');
-        dugme.attr("disabled", true);
-
-
+        code.addClass('redBorder');
+        nameArtical.addClass('redBorder');
+        type.addClass('redBorder');
+        btnSubmit.attr("disabled", true);
 
         $("#table tr").css("background-color", function(index) {
             return index%2==0?"yellow":"orange";
         });
-
-        kod.val('');
-        naziv.val('');
-        opis.val('');
-        vrsta.val('');
-        cena1.val('');
-        cena2.val('');
+        code.val('');
+        nameArtical.val('');
+        description.val('');
+        type.val('');
+        prize.val('');
+        prizePdv.val('');
     });
 
     $('.search').keyup(function(){
         let searchTerm = $('.search').val();
-        let listItem = $('result tbody').children('tr');
+        let listItem = $('results tbody').children('tr');
         let searchSplit = searchTerm.replace(/ /g,"'):containsi('");
         $.extend($.expr[':'], {
             'containsi': function(elem,i,match,array){
                 return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "")
-                .toLowerCase()) >=0;
+                .toLowerCase()) >= 0;
             }
         });
         $(".results tbody tr").not(":containsi('"+ searchSplit +"')").each(function(){
@@ -111,12 +102,10 @@ $(document).ready(() => {
             $(this).attr('visible', 'true');
         })
         let jobCount = $('.results tbody tr[visible="true"]').length;
-        $('.counter').text(jobCount +'item');
-        if(jobCount === 0){
-            $('no-result').show();
+        $('.counter').text('Broj traženih artikala: '+jobCount );
+        if($('.search').val() === ''){
+            $('.counter').val('0');
         }
-
-
     });
 
 
