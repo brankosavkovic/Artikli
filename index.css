@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color:aliceblue;
+}
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+.redBorder{
+    border: 2px solid red;
+}
+#table {
+    visibility: hidden;
+}
+
+#limit{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    max-width: 30px;
+}
+.results tr[visible='false'], .no-result{
+    display: none;
+}
+.results tr[visible='true']{
+    display: table-row;
+}
+.counter{
+    padding: 8px;
+    color: #acacac;
+}
+
+
+
+
